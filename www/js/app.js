@@ -1,15 +1,10 @@
 'use strict';
 
-let likeButtons = document.getElementsByTagName('button');
-
-for (let i = 0; i < likeButtons.length; i++) {
-  likeButtons[i].addEventListener('click', likeMe);
-}
+$('.like-me').click(likeMe);
 
 function likeMe(e) {
-  let character = e.target.parentNode;
-  let counter = character.getElementsByTagName('span')[0];
-  let count = parseInt(counter.textContent);
+  let counter = $(e.target).siblings('span')[0];
+  let count = parseInt($(counter).text());
   count++;
-  counter.textContent = count;
+  $(counter).text(count);
 }
