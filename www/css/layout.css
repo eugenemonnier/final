@@ -1,0 +1,12 @@
+.characters {
+  width: auto;
+}
+
+.character {
+  margin: 1em;
+  width: 250px;
+}
+
+.character span, .character button {
+  display: block;
+}
