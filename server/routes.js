@@ -21,18 +21,22 @@ function homePageHandler(req, res) {
 }
 
 // Use superagent to get the star wars characters, by page
-function fetchCharactersFromSWAPI(pageNumber) {
+function fetchCharactersFromSWAPI(request, response) {
+  console.log(request);
+  
   // Note that the function(s) that use this helper function
   // expect a promise  -- they use .then()
   // therefore, we simply return the call to superagent which will
   // resolve with any data found
 
-  return superagent.get(`https://swapi.co/api/people/?page=${pageNumber}`)
-    .then(response => {
+  return superagent.get(`https://swapi.co/api/people/?page=${request}`)
+    .then(results => {
+      // console.log(results);
       // After we get the data from the remote API, go to the
       // Database and add the number of "likes" for each character
       // from our database, if there are any
-      return getNumberOfLikes(response.body)
+      return getNumberOfLikes(results.body);
+      // return results;
     })
     .catch(error => { throw error; });
 }
@@ -45,7 +49,7 @@ function getNumberOfLikes(data) {
 
   let names = data.results.map(person => person.name);
 
-  let SQL = "SELECT * FROM click_counts WHERE remote_id = ANY($1)";
+  let SQL = 'SELECT * FROM click_counts WHERE remote_id = ANY($1)';
 
   return database.query(SQL, [names])
 
@@ -60,7 +64,7 @@ function getNumberOfLikes(data) {
       }
 
       return data;
-    })
+    });
 }
 
-module.exports = { homePageHandler };
+module.exports = { homePageHandler, fetchCharactersFromSWAPI };

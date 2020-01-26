@@ -1,12 +1,12 @@
-.characters {
+.characters, .dynamic-characters{
   width: auto;
 }
 
-.character {
+.character, .dynamic-character {
   margin: 1em;
   width: 250px;
 }
 
-.character span, .character button {
+.character span, .character button, .dynamic-character span, .dynamic-character button {
   display: block;
 }

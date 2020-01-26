@@ -1,22 +1,22 @@
-.character {
+.character, .dynamic-character {
   background: #fff;
   box-shadow: 0 10px 6px -6px #777;
 }
 
-.character header {
+.character header, .dynamic-character header {
   background: #ddd;
   line-height: 1.5em;
   text-align: center;
 }
 
-.character span {
+.character span, .dynamic-character span {
   font-size: 1.5em;
   font-weight: bold;
   line-height: 2.5em;
   text-align: center;
 }
 
-.character button {
+.character button, .dynamic-character button {
   margin: .5em auto;
   width: 50%;
 }

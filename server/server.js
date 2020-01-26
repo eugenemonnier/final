@@ -19,6 +19,7 @@ app.use(morgan('dev'));
 
 // **** Import our custom Node modules ****
 
+
 // Our database client. Will use this to connect to Postgres
 const database = require('./database.js');
 
@@ -28,6 +29,8 @@ const defaults = require('./middleware.js');
 // The handlers for the routes that this API will actually use
 const routes = require('./routes.js');
 
+// route for more characters
+app.get('/characters/:page', routes.fetchCharactersFromSWAPI);
 
 // Anything static (css or browser-side javascript) should go here
 app.use(express.static('./www'));
